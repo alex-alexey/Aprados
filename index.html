@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
 <head>
- <meta charset="UTF-8"/><link rel="stylesheet" href="assets/style.css?v=6"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <meta charset="UTF-8"/><link rel="stylesheet" href="assets/style.css?v=8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
  <title>Aprados · Encuentra tu lugar en Baix Llobregat y Garraf</title>
  <meta name="description" content="Personal shopper inmobiliario en Baix Llobregat y Garraf. Aprados te acompaña desde la búsqueda de tu vivienda hasta la compra. Cuéntanos qué hogar buscas."/>
  <meta name="theme-color" content="#151916"/>
@@ -49,16 +49,20 @@
    <details><summary>¿En qué zonas trabajáis?<span aria-hidden="true">+</span></summary><p>Trabajamos en el Baix Llobregat y el Garraf, con base en Begues. Cuéntanos dónde quieres vivir para valorar tu búsqueda.</p></details>
    <details><summary>¿Cómo se contrata el servicio?<span aria-hidden="true">+</span></summary><p>Empezamos por conocer tu situación y el alcance del acompañamiento. Los honorarios y las condiciones se concretan contigo antes de contratar.</p></details>
   </div></section>
-  <section id="contacto" class="start-search page-section"><div class="page-grid"><div class="search-title"><h2>Tu búsqueda<br/>empieza aquí.</h2><p>Una conversación para poner tu búsqueda en marcha.</p></div>
-   <form id="buyer-form" class="search-form"><nav class="form-stages" aria-label="Pasos de tu consulta"><button type="button" data-go-step="0" aria-current="step">Tu zona</button><button type="button" data-go-step="1">Tu momento</button><button type="button" data-go-step="2">Hablemos</button></nav>
-    <fieldset class="search-step" data-step="0"><legend>¿Dónde te gustaría vivir?</legend><label class="sr-only" for="buyer-zone">Zona de búsqueda</label><select id="buyer-zone" name="zona"><option value="Estoy explorando">Estoy explorando</option><option>Begues</option><option>Baix Llobregat</option><option>Garraf</option></select><p class="step-help">No hace falta tenerlo decidido. Podemos explorar las opciones contigo.</p></fieldset>
-    <fieldset class="search-step" data-step="1"><legend>Vamos a concretar.</legend><div class="search-fields"><label>Presupuesto aproximado<select name="presupuesto"><option>Por definir</option><option>Hasta 250.000 €</option><option>250.000–400.000 €</option><option>400.000–600.000 €</option><option>Más de 600.000 €</option></select></label><label>¿Cuándo te gustaría comprar?<select name="plazo"><option>Estoy empezando a buscar</option><option>En los próximos 3 meses</option><option>En los próximos 6 meses</option><option>Sin una fecha concreta</option></select></label></div></fieldset>
-    <fieldset class="search-step" data-step="2"><legend>Cuéntanos un poco de ti.</legend><div class="search-fields"><label>Tu nombre<input name="nombre" autocomplete="given-name" placeholder="¿Cómo te llamas?" required maxlength="80"/></label><label>Lo que buscas<textarea name="mensaje" rows="2" maxlength="1500" placeholder="Una terraza, una habitación más, empezar de nuevo…"></textarea></label></div><p class="step-help">Prepararemos tu consulta en WhatsApp. La revisarás antes de enviarla.</p></fieldset>
-    <div class="search-controls"><button type="button" id="form-back" class="back-button" hidden>Volver</button><button type="button" id="form-next" class="button">Continuar <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button><button type="submit" id="form-send" class="button">Preparar mi consulta <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button></div><p class="search-status" role="status" aria-live="polite"></p>
-   </form><div class="direct-contact"><span>¿Prefieres hablar directamente?</span><a href="tel:+34662004454">662 00 44 54</a><a href="mailto:info@aprados.com">info@aprados.com</a></div>
+  <section id="contacto" class="buyer-contact page-section" aria-labelledby="contact-title"><div class="page-grid">
+   <div class="buyer-contact-heading"><h2 id="contact-title">Hablemos de<br/>tu próxima casa.</h2><div><p>Cuéntanos lo que tienes en mente.<br/>Empezamos a buscar contigo.</p><a href="tel:+34662004454">662 00 44 54</a><a href="mailto:info@aprados.com">info@aprados.com</a></div></div>
+   <div class="buyer-contact-layout"><form id="buyer-form" class="buyer-brief">
+    <fieldset class="contact-zones"><legend>¿Dónde te gustaría vivir?</legend><div class="zone-choices"><label><input type="radio" name="zona" value="Estoy explorando" checked/><span>Estoy explorando</span></label><label><input type="radio" name="zona" value="Begues"/><span>Begues</span></label><label><input type="radio" name="zona" value="Baix Llobregat"/><span>Baix Llobregat</span></label><label><input type="radio" name="zona" value="Garraf"/><span>Garraf</span></label></div></fieldset>
+    <div class="brief-fields"><label>Presupuesto aproximado<select name="presupuesto"><option value="Por definir">Por definir</option><option>Hasta 250.000 €</option><option>250.000–400.000 €</option><option>400.000–600.000 €</option><option>Más de 600.000 €</option></select></label><label>¿Cuándo quieres comprar?<select name="plazo"><option>Sin una fecha concreta</option><option>Estoy empezando a buscar</option><option>En los próximos 3 meses</option><option>En los próximos 6 meses</option></select></label></div>
+    <label class="brief-name">Tu nombre<input name="nombre" autocomplete="given-name" placeholder="¿Cómo te llamas?" required maxlength="80"/></label>
+    <label class="brief-message">Lo que no puede faltar<textarea name="mensaje" rows="2" maxlength="1500" placeholder="Una terraza, más luz, espacio para la familia…"></textarea></label>
+    <div class="brief-submit"><button class="button" type="submit">Preparar mi consulta <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></button><p>Se abrirá WhatsApp con tu consulta.<br/>La revisas y decides cuándo enviarla.</p></div>
+   </form>
+   <figure class="contact-visual"><div class="contact-visual-frame"><img id="brief-photo" src="images/begues-panorama.jpg" alt="Panorámica de Begues entre las montañas" width="1100" height="1400" loading="lazy"/></div><figcaption id="contact-location" aria-live="polite">Begues · Baix Llobregat</figcaption></figure>
+   </div>
   </div></section>
  </main>
  <footer class="closing"><div class="page-grid closing-top"><a class="closing-brand" href="#contenido">aprados<span class="logo-window" aria-hidden="true"></span></a><p>Ventana al hogar.<br/>Begues, Barcelona.</p><a class="closing-up" href="#contenido" aria-label="Volver al inicio"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20V4m-6 6 6-6 6 6"/></svg></a></div><div class="page-grid closing-bottom"><span>© 2026 Aprados</span><nav aria-label="Información legal"><a href="https://aprados.com/politica-privacidad/" target="_blank" rel="noopener">Privacidad</a><a href="https://aprados.com/aviso-legal" target="_blank" rel="noopener">Aviso legal</a><a href="creditos.html">Fotografía y créditos</a></nav></div></footer>
- <script src="assets/main.js?v=6" defer></script>
+ <script src="assets/main.js?v=8" defer></script>
 </body>
 </html>

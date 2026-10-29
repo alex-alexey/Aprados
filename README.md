@@ -9,7 +9,7 @@ Descomprime `aprados-web.zip` y sube su contenido a `public_html`, `www` o la ca
 - Portada con cambio manual de exterior/interior.
 - Presentación del servicio con tres capítulos: búsqueda, análisis y compra. En escritorio avanza con el scroll o los controles; en móvil, con los controles táctiles.
 - Exploración de zonas con paneles expansibles.
-- Consulta guiada en tres pasos, con avance, retroceso y conservación de datos.
+- Ficha de búsqueda con zona, presupuesto y plazo a la vista, y fotografía local que cambia según la zona.
 - WhatsApp prepara la consulta para +34 662 00 44 54. El visitante la revisa y la envía desde WhatsApp. No almacena datos ni envía emails.
 - Fuentes locales con licencias OFL y animaciones con alternativa de movimiento reducido.
 

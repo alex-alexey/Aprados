@@ -20,24 +20,24 @@ function renderScroll(){framePending=false;if(reducedMotion.matches)return;const
 function scheduleScroll(){if(!framePending){framePending=true;requestAnimationFrame(renderScroll);}}
 window.addEventListener('scroll',scheduleScroll,{passive:true});window.addEventListener('resize',scheduleScroll,{passive:true});reducedMotion.addEventListener('change',()=>{if(reducedMotion.matches&&heroImage)heroImage.style.transform='';else scheduleScroll();});scheduleScroll();
 
-if('IntersectionObserver' in window&&!reducedMotion.matches){const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('journey-in');io.unobserve(e.target);}}),{threshold:.12});document.querySelectorAll('.purchase-heading,.territory-title,.territory-panel,.answers-title,.answers-list details,.search-title,.search-form,.direct-contact,.closing-top').forEach(el=>io.observe(el));}
+if('IntersectionObserver' in window&&!reducedMotion.matches){const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('journey-in');io.unobserve(e.target);}}),{threshold:.12});document.querySelectorAll('.purchase-heading,.territory-title,.territory-panel,.answers-title,.answers-list details,.buyer-contact-heading,.buyer-brief,.contact-visual,.closing-top').forEach(el=>io.observe(el));}
 
 function selectTerritory(panel){document.querySelectorAll('.territory-panel').forEach(p=>{const selected=p===panel;p.classList.toggle('selected',selected);p.querySelector('button').setAttribute('aria-expanded',String(selected));p.querySelector('.territory-info').hidden=!selected;});}
 document.querySelectorAll('.territory-trigger').forEach(button=>button.addEventListener('click',()=>selectTerritory(button.closest('.territory-panel'))));
 
-// The unenhanced HTML exposes the whole form; JavaScript adds the guided flow.
+// A single, visible brief with a live summary; no data leaves before submission.
 const form=document.querySelector('#buyer-form');
-form.noValidate=true;
-const steps=[...document.querySelectorAll('.search-step')];
-const stageButtons=[...document.querySelectorAll('[data-go-step]')];
-let currentStep=0;
-function showStep(index,{focus=true}={}){currentStep=Math.max(0,Math.min(steps.length-1,index));steps.forEach((s,i)=>{s.hidden=i!==currentStep;s.classList.remove('step-enter');});const active=steps[currentStep];void active.offsetWidth;active.classList.add('step-enter');stageButtons.forEach((b,i)=>{if(i===currentStep)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});document.querySelector('#form-back').hidden=currentStep===0;document.querySelector('#form-next').hidden=currentStep===steps.length-1;document.querySelector('#form-send').hidden=currentStep!==steps.length-1;if(focus){const first=active.querySelector('select,input,textarea');first?.focus({preventScroll:true});}}
-stageButtons.forEach(b=>b.addEventListener('click',()=>showStep(Number(b.dataset.goStep))));
-document.querySelector('#form-next').addEventListener('click',()=>showStep(currentStep+1));document.querySelector('#form-back').addEventListener('click',()=>showStep(currentStep-1));
-document.querySelectorAll('[data-zone-choice]').forEach(link=>link.addEventListener('click',()=>{document.querySelector('#buyer-zone').value=link.dataset.zoneChoice;showStep(0,{focus:false});}));
-form.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT'&&currentStep<steps.length-1){e.preventDefault();showStep(currentStep+1);}});
-form.addEventListener('submit',e=>{e.preventDefault();if(currentStep<2){showStep(currentStep+1);return;}if(!form.reportValidity())return;const d=new FormData(form);const text=`Hola Aprados, soy ${d.get('nombre')}. Me gustaría recibir información para comprar una vivienda.\nZona: ${d.get('zona')}\nPresupuesto: ${d.get('presupuesto')}\nPlazo: ${d.get('plazo')}\n${d.get('mensaje')||''}`;window.location.href='https://wa.me/34662004454?text='+encodeURIComponent(text);});
-showStep(0,{focus:false});
+const briefLocations={
+ 'Estoy explorando':{caption:'Begues · Baix Llobregat',image:'begues-panorama.jpg',alt:'Panorámica de Begues entre las montañas'},
+ 'Begues':{caption:'Begues · Baix Llobregat',image:'begues-panorama.jpg',alt:'Panorámica de Begues entre las montañas'},
+ 'Baix Llobregat':{caption:'Castelldefels · Baix Llobregat',image:'baix.jpg',alt:'Castillo de Castelldefels en el Baix Llobregat'},
+ 'Garraf':{caption:'Sitges · Garraf',image:'garraf.jpg',alt:'Vista de Sitges en el Garraf'}
+};
+function updateBrief(){const d=new FormData(form);const location=briefLocations[d.get('zona')];const img=document.querySelector('#brief-photo');document.querySelector('#contact-location').textContent=location.caption;const next='images/'+location.image;if(img.getAttribute('src')!==next){const visual=document.querySelector('.contact-visual');visual.classList.remove('visual-changed');void visual.offsetWidth;img.src=next;img.alt=location.alt;visual.classList.add('visual-changed');}}
+form.addEventListener('change',updateBrief);
+document.querySelectorAll('[data-zone-choice]').forEach(link=>link.addEventListener('click',()=>{const radio=[...form.querySelectorAll('[name="zona"]')].find(input=>input.value===link.dataset.zoneChoice);if(radio)radio.checked=true;updateBrief();}));
+form.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;const d=new FormData(form);const text=`Hola Aprados, soy ${d.get('nombre')}. Me gustaría recibir información para comprar una vivienda.\nZona: ${d.get('zona')}\nPresupuesto: ${d.get('presupuesto')}\nPlazo: ${d.get('plazo')}\n${d.get('mensaje')||''}`;window.location.href='https://wa.me/34662004454?text='+encodeURIComponent(text);});
+updateBrief();
 
 // One photographic service scene; native scrolling drives chapters on desktop.
 const purchase=document.querySelector('.purchase-experience');
