@@ -1,0 +1,22 @@
+# Herramientas locales del asistente; no forman parte de la web
+.agents/
+.codex/
+.impeccable/
+.taste-skill/
+skills-lock.json
+
+# Dependencias y salidas de herramientas que esta web HTML no necesita
+node_modules/
+.astro/
+dist/
+package-lock.json
+
+# Archivo para subir al hosting; se genera a partir de la web
+aprados-web.zip
+
+# Archivos locales del sistema y secretos
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
